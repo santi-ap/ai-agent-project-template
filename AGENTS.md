@@ -30,13 +30,20 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 2. **After completing a step** → change `[-]` to `[x]` immediately.
 3. **Never batch updates** — update the file as each step begins/ends.
 
-### 3. Verification & QA Gate
-**ALL** changes must pass local verification (tests/linting) before a commit or PR is created.
-- **QA Agent (Gemini):** Responsible for running tests and reporting failures.
-- **Logic Agent (Claude):** Responsible for fixing reported failures.
+### 3. Git & Branching Workflow 🌿
+- **No Direct Master Commits:** All work must be performed on a dedicated branch. NEVER work directly on `master`.
+- **Branch Creation:** When starting a new task, create a new branch from `master`.
+- **Pre-flight Pull:** Always `git pull origin master` before starting work on a new branch to ensure it is up-to-date.
+- **PR Process:** Once a task is complete and all tests pass, create a Pull Request (PR) to merge into `master`.
+- **PR Gate ⚠️:** The PR **must be merged to `master`** before any new task begins. Verify merge with `gh pr view N --json state`, then `git pull origin master`. If Gemini fails to complete this, Claude takes over immediately.
 
-### 4. Git & Branching Workflow
-- **PR Gate ⚠️:** The PR must be merged to master before any new task begins. Verify merge with `gh pr view N --json state`, then `git pull origin master`. If Gemini fails to complete this, Claude takes over immediately.
+### 4. Verification & QA Gate 🧪
+- **Unit Tests:** All new features must include unit tests. All local unit tests must pass before pushing to the repository.
+- **QA Agent (Gemini):** Responsible for running unit tests and reporting results.
+- **Execution:** Claude may trigger a test run by telling Gemini to do it with the `--yolo` flag.
+- **Failure Handling:**
+  - If tests fail and the fix is **trivial**, Gemini handles the fix.
+  - If the failure is **non-trivial**, Claude must fix the reported issue and ask Gemini to re-verify.
 
 ---
 
@@ -68,5 +75,7 @@ This project uses a base template from `santi-ap/ai-agent-project-template`.
 **Mandatory Rule:** If a new general-purpose (non-project-specific) instruction, rule, or workflow improvement is discovered during this project:
 1.  **GEMINI:** Create a new branch in the `ai-agent-project-template` repository.
 2.  **GEMINI:** Apply the improvement to the template and push the branch.
-3.  **USER/GEMINI:** Merge the branch to `master` in the template repo.
-4.  This ensures that every future project benefits from learnings in this one.
+3.  **GEMINI:** Create a Pull Request (PR) to merge the branch into `master` to ensure the template stays current.
+4.  **GEMINI:** Merge the PR to `master` immediately (using `gh pr merge --merge`).
+5.  **GEMINI:** Do NOT delete the branch after the merge.
+6.  This ensures that every future project benefits from learnings in this one.

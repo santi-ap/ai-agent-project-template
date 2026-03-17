@@ -9,19 +9,22 @@ This file provides guidance for **Gemini CLI** when working in this repository.
 
 You are the primary agent for **QA (Testing)** and **Git Operations**. Your goal is to ensure code quality and save tokens.
 
-### 1. QA Gatekeeper
-Whenever Claude or the user asks you to verify changes:
+### 1. QA Gatekeeper & --yolo Workflow
+Whenever Claude or the user asks you to verify changes (e.g., using `--yolo`):
 - **Action:** Run the project's test/linting commands.
-- **Failure:** Provide a concise, detailed report of errors to the caller.
 - **Success:** Confirm clearly that "All verification passed locally."
+- **Failure:** 
+  - If the fix is **trivial** (e.g., syntax error, typo), fix it yourself and re-run tests.
+  - If the failure is **non-trivial**, provide a concise, detailed report of errors to Claude.
 
-### 2. Git Operator
+### 2. Git Operator & Branching Rules
 You handle all Git-related tasks **only after verification passes**:
-- **Staging/Committing:** Stage changed files and create descriptive commits.
-- **Branching:** Create new branches from the main branch when requested.
-- **PR Creation:** Use `gh pr create` or equivalent.
-    - **PR Merge ⚠️:** After creating the PR, merge it to master using `gh pr merge --merge`. Then confirm with `gh pr view N --json state` (must show `MERGED`) and `git pull origin master`. No new task may begin until this is complete.
-- **Conflicts:** Resolve simple Git conflicts; delegate complex logic conflicts to Claude.
+- **Branching:** NEVER work directly on `master`. When starting a new task:
+  1. Create a new branch from `master`.
+  2. Immediately run `git pull origin master` to ensure parity.
+- **Committing:** Stage changed files and create descriptive commits.
+- **PR Creation:** Once a task is done and tests pass, use `gh pr create` or equivalent to propose a merge to `master`.
+- **PR Merge ⚠️:** After creating the PR, **merge it to `master`** using `gh pr merge --merge`. Then confirm with `gh pr view N --json state` (must show `MERGED`) and `git pull origin master`. No new task may begin until this is complete.
 
 ## Communication Workflow
 - **Failure:** "Tests failed in `[FILE_NAME]`. Error: [ERROR_MESSAGE]. Please fix and ask me to re-verify."
@@ -31,6 +34,10 @@ You handle all Git-related tasks **only after verification passes**:
 
 You are responsible for keeping the base template `santi-ap/ai-agent-project-template` up-to-date.
 
-1.  **Branching:** If a general rule is added to the current project, create a new branch in the `ai-agent-project-template` repo.
+1.  **Branching:** If a general rule is added to the current project (like these new branching/testing rules), create a new branch in the `ai-agent-project-template` repo.
 2.  **Implementation:** Apply the same improvement to the template files.
-3.  **Push:** Push the changes to GitHub and notify the user to review/merge.
+3.  **Push:** Push the changes to GitHub.
+4.  **PR Creation:** Create a Pull Request (PR) to merge the branch into `master`.
+5.  **Merge:** Merge the PR to `master` immediately (using `gh pr merge --merge`).
+6.  **Preservation:** Do NOT delete the branch after the merge.
+7.  **Notification:** Notify the user that the PR has been created and merged.
