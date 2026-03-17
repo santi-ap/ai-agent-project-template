@@ -16,7 +16,8 @@ To save tokens and leverage specialized capabilities, you **MUST** delegate QA a
     *   `gemini --yolo "Run verification commands and report any failures."`
 2.  **Git Operations:** Once tests pass, invoke Gemini to handle staging, commits, and PRs.
     *   `gemini --yolo "Tests passed. Commit these changes and prepare a PR."`
-3.  **Task Updates:** Delegate `tasks/*.md` updates to Gemini.
+3.  **PR Gate:** After Gemini creates the PR, verify it is merged before starting the next task. Check: `gh pr view N --json state` must be `MERGED`. If Gemini failed to create or merge the PR, Claude handles it directly via `gh pr merge + git pull origin master`.
+4.  **Task Updates:** Delegate `tasks/*.md` updates to Gemini.
     *   `gemini --yolo "Mark step 'Update UI' as [-] in tasks/feat-ui.md"`
 
 ---

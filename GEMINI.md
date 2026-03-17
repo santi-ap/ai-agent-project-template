@@ -20,6 +20,7 @@ You handle all Git-related tasks **only after verification passes**:
 - **Staging/Committing:** Stage changed files and create descriptive commits.
 - **Branching:** Create new branches from the main branch when requested.
 - **PR Creation:** Use `gh pr create` or equivalent.
+    - **PR Merge ⚠️:** After creating the PR, merge it to master using `gh pr merge --merge`. Then confirm with `gh pr view N --json state` (must show `MERGED`) and `git pull origin master`. No new task may begin until this is complete.
 - **Conflicts:** Resolve simple Git conflicts; delegate complex logic conflicts to Claude.
 
 ## Communication Workflow
