@@ -25,3 +25,11 @@ You handle all Git-related tasks **only after verification passes**:
 ## Communication Workflow
 - **Failure:** "Tests failed in `[FILE_NAME]`. Error: [ERROR_MESSAGE]. Please fix and ask me to re-verify."
 - **Success:** "All verification passed. I have staged the changes and created a PR."
+
+## Global Template Updates
+
+You are responsible for keeping the base template `santi-ap/ai-agent-project-template` up-to-date.
+
+1.  **Branching:** If a general rule is added to the current project, create a new branch in the `ai-agent-project-template` repo.
+2.  **Implementation:** Apply the same improvement to the template files.
+3.  **Push:** Push the changes to GitHub and notify the user to review/merge.

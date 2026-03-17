@@ -56,4 +56,14 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 ```
 
 ### Architecture Overview
-[ADD HIGH-LEVEL ARCHITECTURE DESCRIPTION HERE]
+---
+
+## Global Template Updates 🌍
+
+This project uses a base template from `santi-ap/ai-agent-project-template`.
+
+**Mandatory Rule:** If a new general-purpose (non-project-specific) instruction, rule, or workflow improvement is discovered during this project:
+1.  **GEMINI:** Create a new branch in the `ai-agent-project-template` repository.
+2.  **GEMINI:** Apply the improvement to the template and push the branch.
+3.  **USER/GEMINI:** Merge the branch to `master` in the template repo.
+4.  This ensures that every future project benefits from learnings in this one.

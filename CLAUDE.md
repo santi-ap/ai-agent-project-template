@@ -31,4 +31,10 @@ After every conversation, log mistakes, workarounds, or project patterns to `.cl
 
 ### Slash Commands
 - `/tidy-learnings` — deduplicate and trim `.claude/steering/learning.md`.
-- `/compress-memory` — compress old entries into `.claude/steering/long_term_memory.md`.
+---
+
+## Global Template Updates
+
+If you discover a new, non-project-specific rule or workflow that should apply to **all** projects:
+- **Delegate to Gemini:** Ask Gemini to update the `santi-ap/ai-agent-project-template` repo via a new branch.
+- Example: `gemini --yolo "Update the global template repo with this new rule: [RULE DESCRIPTION]"`
