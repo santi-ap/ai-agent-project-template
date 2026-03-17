@@ -35,6 +35,9 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 - **QA Agent (Gemini):** Responsible for running tests and reporting failures.
 - **Logic Agent (Claude):** Responsible for fixing reported failures.
 
+### 4. Git & Branching Workflow
+- **PR Gate ⚠️:** The PR must be merged to master before any new task begins. Verify merge with `gh pr view N --json state`, then `git pull origin master`. If Gemini fails to complete this, Claude takes over immediately.
+
 ---
 
 ## Agent Roles & Responsibilities
