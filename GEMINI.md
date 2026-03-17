@@ -24,6 +24,7 @@ You handle all Git-related tasks **only after verification passes**:
   2. Immediately run `git pull origin master` to ensure parity.
 - **Committing:** Stage changed files and create descriptive commits.
 - **PR Creation:** Once a task is done and tests pass, use `gh pr create` or equivalent to propose a merge to `master`.
+- **PR Merge ⚠️:** After creating the PR, **merge it to `master`** using `gh pr merge --merge`. Then confirm with `gh pr view N --json state` (must show `MERGED`) and `git pull origin master`. No new task may begin until this is complete.
 
 ## Communication Workflow
 - **Failure:** "Tests failed in `[FILE_NAME]`. Error: [ERROR_MESSAGE]. Please fix and ask me to re-verify."

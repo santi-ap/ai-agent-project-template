@@ -35,6 +35,7 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 - **Branch Creation:** When starting a new task, create a new branch from `master`.
 - **Pre-flight Pull:** Always `git pull origin master` before starting work on a new branch to ensure it is up-to-date.
 - **PR Process:** Once a task is complete and all tests pass, create a Pull Request (PR) to merge into `master`.
+- **PR Gate ⚠️:** The PR **must be merged to `master`** before any new task begins. Verify merge with `gh pr view N --json state`, then `git pull origin master`. If Gemini fails to complete this, Claude takes over immediately.
 
 ### 4. Verification & QA Gate 🧪
 - **Unit Tests:** All new features must include unit tests. All local unit tests must pass before pushing to the repository.
