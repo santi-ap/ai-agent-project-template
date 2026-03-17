@@ -75,5 +75,6 @@ This project uses a base template from `santi-ap/ai-agent-project-template`.
 1.  **GEMINI:** Create a new branch in the `ai-agent-project-template` repository.
 2.  **GEMINI:** Apply the improvement to the template and push the branch.
 3.  **GEMINI:** Create a Pull Request (PR) to merge the branch into `master` to ensure the template stays current.
-4.  **GEMINI:** Do NOT delete the branch after the PR is created.
-5.  This ensures that every future project benefits from learnings in this one.
+4.  **GEMINI:** Merge the PR to `master` immediately (using `gh pr merge --merge`).
+5.  **GEMINI:** Do NOT delete the branch after the merge.
+6.  This ensures that every future project benefits from learnings in this one.

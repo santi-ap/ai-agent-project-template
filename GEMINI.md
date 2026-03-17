@@ -37,5 +37,6 @@ You are responsible for keeping the base template `santi-ap/ai-agent-project-tem
 2.  **Implementation:** Apply the same improvement to the template files.
 3.  **Push:** Push the changes to GitHub.
 4.  **PR Creation:** Create a Pull Request (PR) to merge the branch into `master`.
-5.  **Preservation:** Do NOT delete the branch after the PR is created.
-6.  **Notification:** Notify the user that the PR has been created for their review.
+5.  **Merge:** Merge the PR to `master` immediately (using `gh pr merge --merge`).
+6.  **Preservation:** Do NOT delete the branch after the merge.
+7.  **Notification:** Notify the user that the PR has been created and merged.
