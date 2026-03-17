@@ -74,5 +74,6 @@ This project uses a base template from `santi-ap/ai-agent-project-template`.
 **Mandatory Rule:** If a new general-purpose (non-project-specific) instruction, rule, or workflow improvement is discovered during this project:
 1.  **GEMINI:** Create a new branch in the `ai-agent-project-template` repository.
 2.  **GEMINI:** Apply the improvement to the template and push the branch.
-3.  **USER/GEMINI:** Merge the branch to `master` in the template repo.
-4.  This ensures that every future project benefits from learnings in this one.
+3.  **GEMINI:** Create a Pull Request (PR) to merge the branch into `master` to ensure the template stays current.
+4.  **GEMINI:** Do NOT delete the branch after the PR is created.
+5.  This ensures that every future project benefits from learnings in this one.
