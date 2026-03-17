@@ -72,9 +72,9 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 
 This project uses a base template from `santi-ap/ai-agent-project-template`.
 
-**Mandatory Rule:** If a new general-purpose (non-project-specific) instruction, rule, or workflow improvement is discovered during this project:
+**Mandatory Rule:** Whenever `AGENTS.md`, `CLAUDE.md`, or `GEMINI.md` are updated with a new general-purpose (non-project-specific) instruction, rule, or workflow improvement — whether discovered during work or added directly by the user — the template repository **must** be updated immediately:
 1.  **GEMINI:** Create a new branch in the `ai-agent-project-template` repository.
-2.  **GEMINI:** Apply the improvement to the template and push the branch.
+2.  **GEMINI:** Apply the same change to the corresponding file(s) in the template and push the branch.
 3.  **GEMINI:** Create a Pull Request (PR) to merge the branch into `master` to ensure the template stays current.
 4.  **GEMINI:** Merge the PR to `master` immediately (using `gh pr merge --merge`).
 5.  **GEMINI:** Do NOT delete the branch after the merge.

@@ -36,6 +36,6 @@ After every conversation, log mistakes, workarounds, or project patterns to `.cl
 
 ## Global Template Updates
 
-If you discover a new, non-project-specific rule or workflow that should apply to **all** projects:
-- **Delegate to Gemini:** Ask Gemini to update the `santi-ap/ai-agent-project-template` repo via a new branch.
+Whenever `AGENTS.md`, `CLAUDE.md`, or `GEMINI.md` are updated with a new general-purpose (non-project-specific) rule or workflow — whether you discovered it during work or the user added it directly — you **must** delegate the same change to the template repo:
+- **Delegate to Gemini:** Ask Gemini to apply the change to `santi-ap/ai-agent-project-template` via a new branch.
 - Example: `gemini --yolo "Update the global template repo with this new rule: [RULE DESCRIPTION]"`

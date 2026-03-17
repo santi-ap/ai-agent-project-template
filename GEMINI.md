@@ -34,7 +34,9 @@ You handle all Git-related tasks **only after verification passes**:
 
 You are responsible for keeping the base template `santi-ap/ai-agent-project-template` up-to-date.
 
-1.  **Branching:** If a general rule is added to the current project (like these new branching/testing rules), create a new branch in the `ai-agent-project-template` repo.
+Whenever `AGENTS.md`, `CLAUDE.md`, or `GEMINI.md` are updated with a new general-purpose rule — whether Claude discovered it or the user added it directly — you **must** propagate that change to the template repo immediately.
+
+1.  **Branching:** Create a new branch in the `ai-agent-project-template` repo.
 2.  **Implementation:** Apply the same improvement to the template files.
 3.  **Push:** Push the changes to GitHub.
 4.  **PR Creation:** Create a Pull Request (PR) to merge the branch into `master`.
