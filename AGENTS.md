@@ -30,10 +30,19 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 2. **After completing a step** → change `[-]` to `[x]` immediately.
 3. **Never batch updates** — update the file as each step begins/ends.
 
-### 3. Verification & QA Gate
-**ALL** changes must pass local verification (tests/linting) before a commit or PR is created.
-- **QA Agent (Gemini):** Responsible for running tests and reporting failures.
-- **Logic Agent (Claude):** Responsible for fixing reported failures.
+### 3. Git & Branching Workflow 🌿
+- **No Direct Master Commits:** All work must be performed on a dedicated branch. NEVER work directly on `master`.
+- **Branch Creation:** When starting a new task, create a new branch from `master`.
+- **Pre-flight Pull:** Always `git pull origin master` before starting work on a new branch to ensure it is up-to-date.
+- **PR Process:** Once a task is complete and all tests pass, create a Pull Request (PR) to merge into `master`.
+
+### 4. Verification & QA Gate 🧪
+- **Unit Tests:** All new features must include unit tests. All local unit tests must pass before pushing to the repository.
+- **QA Agent (Gemini):** Responsible for running unit tests and reporting results.
+- **Execution:** Claude may trigger a test run by telling Gemini to do it with the `--yolo` flag.
+- **Failure Handling:**
+  - If tests fail and the fix is **trivial**, Gemini handles the fix.
+  - If the failure is **non-trivial**, Claude must fix the reported issue and ask Gemini to re-verify.
 
 ---
 
