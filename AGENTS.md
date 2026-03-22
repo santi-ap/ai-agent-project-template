@@ -35,25 +35,18 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 - **Branch Creation:** When starting a new task, create a new branch from `master`.
 - **Pre-flight Pull:** Always `git pull origin master` before starting work on a new branch to ensure it is up-to-date.
 - **PR Process:** Once a task is complete and all tests pass, create a Pull Request (PR) to merge into `master`.
-- **PR Gate ⚠️:** The PR **must be merged to `master`** before any new task begins. Verify merge with `gh pr view N --json state`, then `git pull origin master`. If Gemini fails to complete this, Claude takes over immediately.
+- **PR Gate ⚠️:** The PR **must be merged to `master`** before any new task begins. Verify merge with `gh pr view N --json state`, then `git pull origin master`.
 
 ### 4. Verification & QA Gate 🧪
 - **Unit Tests:** All new features must include unit tests. All local unit tests must pass before pushing to the repository.
-- **QA Agent (Gemini):** Responsible for running unit tests and reporting results.
-- **Execution:** Claude may trigger a test run by telling Gemini to do it with the `--yolo` flag.
-- **Failure Handling:**
-  - If tests fail and the fix is **trivial**, Gemini handles the fix.
-  - If the failure is **non-trivial**, Claude must fix the reported issue and ask Gemini to re-verify.
+- **QA Owner (Claude):** Responsible for running tests/linting and fixing all failures before creating a PR.
 
 ---
 
 ## Agent Roles & Responsibilities
 
-- **Claude Code:** Primary code architect and implementer. Focuses on logic and feature implementation.
-- **Gemini CLI:** Primary **QA, Git, and Task Operator**.
-    - **QA:** Runs tests and verification commands after code changes.
-    - **Git:** Handles branching, staging, commits, and PRs **only after verification passes**.
-    - **Task Updates:** Updates `tasks/*.md` checkboxes as work progresses.
+- **Claude Code:** Primary code architect, QA owner, and Git owner. Handles logic, feature implementation, running tests, and all Git operations.
+- **Gemini CLI:** Thinking partner / rubber duck. Consulted optionally to pressure-test plans, suggest alternatives, or catch blind spots — **not** responsible for QA or Git.
 
 ---
 
@@ -72,10 +65,8 @@ Every feature, bug fix, refactor, or similar work **MUST** begin by creating a t
 
 This project uses a base template from `santi-ap/ai-agent-project-template`.
 
-**Mandatory Rule:** Whenever `AGENTS.md`, `CLAUDE.md`, or `GEMINI.md` are updated with a new general-purpose (non-project-specific) instruction, rule, or workflow improvement — whether discovered during work or added directly by the user — the template repository **must** be updated immediately:
-1.  **GEMINI:** Create a new branch in the `ai-agent-project-template` repository.
-2.  **GEMINI:** Apply the same change to the corresponding file(s) in the template and push the branch.
-3.  **GEMINI:** Create a Pull Request (PR) to merge the branch into `master` to ensure the template stays current.
-4.  **GEMINI:** Merge the PR to `master` immediately (using `gh pr merge --merge`).
-5.  **GEMINI:** Do NOT delete the branch after the merge.
-6.  This ensures that every future project benefits from learnings in this one.
+**Mandatory Rule:** If a new general-purpose (non-project-specific) instruction, rule, or workflow improvement is discovered during this project:
+1.  **Claude:** Create a new branch in the `ai-agent-project-template` repository.
+2.  **Claude:** Apply the improvement to the template and push the branch.
+3.  **Claude:** Create a PR and merge it to `master` immediately (`gh pr merge --merge`). Do NOT delete the branch.
+4.  This ensures that every future project benefits from learnings in this one.

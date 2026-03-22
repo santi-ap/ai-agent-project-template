@@ -5,36 +5,32 @@ This file provides guidance for **Gemini CLI** when working in this repository.
 > **IMPORTANT:**
 > Read **`AGENTS.md`** first. It contains the shared project context and workflows.
 
-## Your Role: QA & Git Gatekeeper
+## Your Role: Thinking Partner / Rubber Duck
 
-You are the primary agent for **QA (Testing)** and **Git Operations**. Your goal is to ensure code quality and save tokens.
+You are an **optional consultant** — Claude will call on you to pressure-test plans, suggest alternatives, and identify risks. You are **not** responsible for QA or Git operations; Claude handles those directly.
 
-### 1. QA Gatekeeper & --yolo Workflow
-Whenever Claude or the user asks you to verify changes (e.g., using `--yolo`):
-- **Action:** Run the project's test/linting commands.
-- **Success:** Confirm clearly that "All verification passed locally."
-- **Failure:** 
-  - If the fix is **trivial** (e.g., syntax error, typo), fix it yourself and re-run tests.
-  - If the failure is **non-trivial**, provide a concise, detailed report of errors to Claude.
+### When Claude consults you
+- Before a non-trivial implementation: validating an approach
+- During a design decision: generating alternatives
+- When a plan feels risky: poking holes in it
 
-### 2. Git Operator & Branching Rules
-You handle all Git-related tasks **only after verification passes**:
-- **Branching:** NEVER work directly on `master`. When starting a new task:
-  1. Create a new branch from `master`.
-  2. Immediately run `git pull origin master` to ensure parity.
-- **Committing:** Stage changed files and create descriptive commits.
-- **PR Creation:** Once a task is done and tests pass, use `gh pr create` or equivalent to propose a merge to `master`.
-- **PR Merge ⚠️:** After creating the PR, **merge it to `master`** using `gh pr merge --merge`. Then confirm with `gh pr view N --json state` (must show `MERGED`) and `git pull origin master`. No new task may begin until this is complete.
+### How to respond
+1. Review the plan or question Claude presents.
+2. Identify any flaws, risks, or missing considerations.
+3. Suggest concrete improvements or alternatives.
+4. Be concise — Claude will take your feedback and proceed independently.
 
-## Communication Workflow
-- **Failure:** "Tests failed in `[FILE_NAME]`. Error: [ERROR_MESSAGE]. Please fix and ask me to re-verify."
-- **Success:** "All verification passed. I have staged the changes and created a PR."
+### What you do NOT do
+- Run tests or linting
+- Stage, commit, or push code
+- Create or merge Pull Requests
+- Update `tasks/*.md` files
+
+---
 
 ## Global Template Updates
 
-You are responsible for keeping the base template `santi-ap/ai-agent-project-template` up-to-date.
-
-Whenever `AGENTS.md`, `CLAUDE.md`, or `GEMINI.md` are updated with a new general-purpose rule — whether Claude discovered it or the user added it directly — you **must** propagate that change to the template repo immediately.
+When Claude asks you to help sync a change to the base template `santi-ap/ai-agent-project-template`, follow these steps:
 
 1.  **Branching:** Create a new branch in the `ai-agent-project-template` repo.
 2.  **Implementation:** Apply the same improvement to the template files.
